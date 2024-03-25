@@ -15,9 +15,11 @@ const DynamicForm = () => {
       { startingDate: "", endingDate: "", degree: "", university: "" },
     ],
     experiences: [
-        { startingDate: "", endingDate: "", position: "", hospital: "" },
+      { startingDate: "", endingDate: "", position: "", hospital: "" },
     ],
-    timeSlots: [{ day: "", startingTime: "", endTime: ""}],
+    timeSlots: [{ day: "", startingTime: "", endTime: "" }],
+    about: "",
+    photo: null,
   });
 
   const handleInputChange = (e: any) => {
@@ -180,38 +182,29 @@ const DynamicForm = () => {
             </button>
           </div>
           {/* experiences  */}
-          <div className="">
-          {/* TimeSlots  */}
-          <div className="">
-            {formData.timeSlots.map((item, index) => (
+          <div className=" mt-2">
+            {formData.experiences.map((item, index) => (
               <div
                 key={index}
                 className="mb-5  grid grid-cols-4 gap-x-1 mb-[30px] w-1/2"
               >
-                 <div className="">
-              <p className="mb-2">Specialization</p>
-              <select
-                name="specialization"
-                value={item.day}
-                onChange={handleInputChange}
-                className=""
-              >
-                <option value="">Select</option>
-                <option value="saturday">Saturday</option>
-                <option value="sunday">Sunday</option>
-                <option value="monday">Monday</option>
-                <option value="tuesday">Tuesday</option>
-                <option value="wednesday">Wednesday</option>
-                <option value="thursday">Thursday</option>
-                <option value="friday">Friday</option>
-              </select>
-            </div>
                 <div className="">
-                  <p className="mb-2">Starting Time</p>
+                  <p className="mb-2">Starting Date</p>
                   <input
-                    type="time"
-                    name="startingTime"
-                    value={item.startingTime}
+                    type="date"
+                    name="startingDate"
+                    value={item.startingDate}
+                    onChange={handleInputChange}
+                    maxLength={200}
+                    className=" border border-slate-500 p-2"
+                  ></input>
+                </div>
+                <div className="">
+                  <p className="mb-2">Ending Date</p>
+                  <input
+                    type="date"
+                    name="endingDate"
+                    value={item.endingDate}
                     onChange={handleInputChange}
                     maxLength={200}
                     className=" border border-slate-500 p-2"
@@ -222,25 +215,120 @@ const DynamicForm = () => {
                   <input
                     type="text"
                     name="degree"
-                    value={item.endTime}
+                    value={item.position}
                     onChange={handleInputChange}
                     maxLength={200}
                     placeholder="Degree"
                     className=" border border-slate-500 p-2 mx-1"
                   ></input>
                 </div>
-               
+                <div className="">
+                  <p className="mb-2">Hospital</p>
+                  <input
+                    type="text"
+                    name="university"
+                    value={item.hospital}
+                    onChange={handleInputChange}
+                    maxLength={200}
+                    placeholder="University"
+                    className=" border border-slate-500 p-2 mx-1"
+                  ></input>
+                </div>
               </div>
             ))}
             <button className=" bg-red-500 rounded-full p-2 text-white">
-            
               <AiOutlineDelete />
             </button>
 
             <button className=" bg-black rounded-md p-2 text-white mx-2">
-              Add TimeSolt
+              Add Experience
             </button>
           </div>
+          {/* TimeSlots  */}
+          <div className="mt-4">
+            <div className=" ">
+              {formData.timeSlots.map((item, index) => (
+                <div
+                  key={index}
+                  className="mb-5  grid grid-cols-4 gap-x-1 mb-[30px] w-1/2"
+                >
+                  <div className="">
+                    <p className="mb-2">Specialization</p>
+                    <select
+                      name="specialization"
+                      value={item.day}
+                      onChange={handleInputChange}
+                      className=""
+                    >
+                      <option value="">Select</option>
+                      <option value="saturday">Saturday</option>
+                      <option value="sunday">Sunday</option>
+                      <option value="monday">Monday</option>
+                      <option value="tuesday">Tuesday</option>
+                      <option value="wednesday">Wednesday</option>
+                      <option value="thursday">Thursday</option>
+                      <option value="friday">Friday</option>
+                    </select>
+                  </div>
+                  <div className="">
+                    <p className="mb-2">Starting Time</p>
+                    <input
+                      type="time"
+                      name="startingTime"
+                      value={item.startingTime}
+                      onChange={handleInputChange}
+                      maxLength={200}
+                      className=" border border-slate-500 p-2"
+                    ></input>
+                  </div>
+                  <div className="">
+                    <p className="mb-2">Position</p>
+                    <input
+                      type="text"
+                      name="degree"
+                      value={item.endTime}
+                      onChange={handleInputChange}
+                      maxLength={200}
+                      placeholder="Degree"
+                      className=" border border-slate-500 p-2 mx-1"
+                    ></input>
+                  </div>
+                </div>
+              ))}
+              <button className=" bg-red-500 rounded-full p-2 text-white">
+                <AiOutlineDelete />
+              </button>
+
+              <button className=" bg-black rounded-md p-2 text-white mx-2">
+                Add TimeSolt
+              </button>
+            </div>
+          </div>
+          <div className=" mt-6">
+            <p>About You</p>
+            <textarea
+              name="about"
+              rows={5}
+              value={formData.about}
+              placeholder="Write About You"
+              onChange={handleInputChange}
+              className=" border border-slate-500"
+            ></textarea>
+          </div>
+          {/* // photo */}
+          {formData.photo && (
+            <figure className=" w-[60px] h-[60px] rounded-full border border-solid flex items-center justify-center">
+              <img
+                src={formData.photo}
+                className=" w-full rounded-full"
+                alt="no photo"
+              ></img>
+
+
+            </figure>
+          )}
+          <div className="">
+            
           </div>
         </div>
       </form>
