@@ -1,11 +1,14 @@
 import ToggleProductContent from '@/challenges/ToggleProductContent'
-import DynamicForm from '@/challenges/DynamicForm'
+import FilterDynamic from '@/challenges/FilterDynamic';
+
 
 export default function Home() {
   return (
     <>
       {/* <ToggleProductContent /> */}
-      <DynamicForm/>
+
+      <FilterDynamic/>
+   
     </>
   )
 }
